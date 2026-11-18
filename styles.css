@@ -340,3 +340,64 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Five prominent sections, with the language control at the top right. */
+.header-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.1rem 1.5rem;
+  padding-block: 1.2rem 0.9rem;
+}
+.brand { min-width: 0; line-height: 1.25; }
+.brand-mark { flex-shrink: 0; }
+.language-picker { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); font-size: 0.85rem; }
+.language-picker select {
+  min-height: 2.75rem;
+  max-width: 100%;
+  padding: 0.5rem 1.8rem 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.25rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+select:focus-visible { outline: 3px solid #c57523; outline-offset: 3px; }
+.site-nav { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.65rem; width: 100%; }
+.site-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.65rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 0.25rem;
+  background: var(--paper);
+  font-size: 1.18rem;
+  font-weight: 650;
+  white-space: normal;
+  text-align: center;
+}
+.site-nav a:hover { background: #eee2d3; border-color: var(--red); }
+.site-nav a[aria-current] { background: var(--red); border-color: var(--red); color: var(--surface); }
+.video-frame { aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line); border-radius: 0.25rem; background: var(--dark); }
+.video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.video-fallback { margin-top: 0.8rem; }
+#photos, #introduction { scroll-margin-top: 1.5rem; }
+@media (max-width: 760px) {
+  .header-inner { gap: 0.85rem; padding-block: 0.9rem; }
+  .brand { font-size: 1.1rem; }
+  .language-picker > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .site-nav { gap: 0.4rem; }
+  .site-nav a { min-height: 3.1rem; font-size: 1rem; }
+}
+@media (max-width: 480px) {
+  .brand { font-size: 0.98rem; gap: 0.45rem; }
+  .brand-mark { width: 1.8rem; height: 1.8rem; }
+  .language-picker select { width: 7rem; padding-inline: 0.45rem 0.8rem; }
+  .site-nav a { justify-self: stretch; padding-inline: 0.15rem; font-size: 0.84rem; overflow-wrap: anywhere; }
+}
+@media (max-width: 480px) {
+  html[lang="en"] .site-nav { grid-template-columns: 0.85fr 1.3fr 0.8fr 0.85fr 1fr; }
+  html[lang="en"] .site-nav a { overflow-wrap: normal; }
+}
